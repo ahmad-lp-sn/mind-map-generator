@@ -6,11 +6,28 @@ import { filesService } from "./files";
 import { MindMapData, mindMapsRepo, patchsRepo } from "../repositories";
 import { MIND_MAPS_ERR } from "../constants/errors";
 import { MindMapFilter, PaginatedQuery } from "../types";
+import Joi from "joi";
 
 const MIND_MAP_DATA_STRUCTURE_STR = `GeneratedMindMap {
   name: string;
   branches?: GeneratedMindMap[];
 };`;
+
+const mindMapDataSchema = Joi.object({
+  name: Joi.string().required(),
+  branches: Joi.array().items(Joi.link('#mindMapData'))
+}).id('mindMapData');;
+
+const validateMindMapJsonStr = (json: string) => {
+  const { data, isValid } = validateJsonStr<MindMapData>(json);
+  if (!isValid) {
+    return { isValid };
+  }
+  // validate schema
+  const validationResult = mindMapDataSchema.validate(data);
+
+  return { data, isValid: !validationResult.error };
+};
 
 const generate = async (subject: string, topic: string) => {
   const prompt = mindMapsPrompts.generate(
@@ -23,7 +40,7 @@ const generate = async (subject: string, topic: string) => {
   chatSession.push({ role: "user", content: prompt });
 
   const result = await chatSession.exec();
-  const { data, isValid } = validateJsonStr<MindMapData>(result?.content);
+  const { data, isValid } = validateMindMapJsonStr(result?.content);
   const success = !chatSession.error && isValid;
 
   const mindMapRef = await mindMapsRepo.create({

@@ -1,0 +1,813 @@
+{
+	"info": {
+		"_postman_id": "6ac19a5b-47cc-4678-8f8a-ad53d4e5c1bc",
+		"name": "Mind Maps Generator",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12821440",
+		"_collection_link": "https://power-rangers0-0.postman.co/workspace/test~1360b3f6-699c-4474-ae10-bd860561cd37/collection/12821440-6ac19a5b-47cc-4678-8f8a-ad53d4e5c1bc?action=share&source=collection_link&creator=12821440"
+	},
+	"item": [
+		{
+			"name": "mind-maps",
+			"item": [
+				{
+					"name": "generate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response is an object with success and mindMap properties\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('object').that.has.all.keys('success', 'mindMap');",
+									"});",
+									"",
+									"pm.test(\"mindMap property has createdAt, subject, topic, and id properties\", function () {",
+									"    var mindMap = pm.response.json().mindMap;",
+									"    pm.expect(mindMap).to.be.an('object').that.has.all.keys('createdAt', 'subject', 'topic', 'id', 'map');",
+									"});",
+									"",
+									"pm.test(\"mindMap property has map property with name and branches properties\", function () {",
+									"    var map = pm.response.json().mindMap.map;",
+									"    pm.expect(map).to.be.an('object').that.has.all.keys('name', 'branches');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"subject\": \"cook\",\n    \"topic\": \"rise\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/mind-maps/generate",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mind-maps",
+								"generate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"subject\": \"cook\",\n    \"topic\": \"rise\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/mind-maps/generate",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"mind-maps",
+										"generate"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1500"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5dc-ysqRwbjjIFYiTLO2MjFOzt3iJuU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jan 2024 07:57:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"success\": true,\n    \"mindMap\": {\n        \"createdAt\": \"2024-01-30T07:57:24.819Z\",\n        \"subject\": \"cook\",\n        \"topic\": \"rise\",\n        \"id\": \"55ca8dab-b67e-4ffb-95ed-79b4c6b31d96\",\n        \"map\": {\n            \"name\": \"Cook and Rise\",\n            \"branches\": [\n                {\n                    \"name\": \"Rise\",\n                    \"branches\": [\n                        {\n                            \"name\": \"Yeast\",\n                            \"branches\": [\n                                {\n                                    \"name\": \"Types\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Active Dry Yeast\"\n                                        },\n                                        {\n                                            \"name\": \"Instant Yeast\"\n                                        },\n                                        {\n                                            \"name\": \"Fresh Yeast\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"name\": \"Activation\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Proofing\"\n                                        },\n                                        {\n                                            \"name\": \"Temperature\"\n                                        },\n                                        {\n                                            \"name\": \"Feeding\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"name\": \"Effects on Dough\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Leavening\"\n                                        },\n                                        {\n                                            \"name\": \"Flavor Development\"\n                                        },\n                                        {\n                                            \"name\": \"Texture Improvement\"\n                                        }\n                                    ]\n                                }\n                            ]\n                        },\n                        {\n                            \"name\": \"Baking Powder\",\n                            \"branches\": [\n                                {\n                                    \"name\": \"Composition\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Acidic Ingredient\"\n                                        },\n                                        {\n                                            \"name\": \"Basic Ingredient\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"name\": \"Leavening Process\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Double Acting\"\n                                        },\n                                        {\n                                            \"name\": \"Single Acting\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"name\": \"Preferred Usage\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Quick Breads\"\n                                        },\n                                        {\n                                            \"name\": \"Cakes\"\n                                        }\n                                    ]\n                                }\n                            ]\n                        },\n                        {\n                            \"name\": \"Baking Soda\",\n                            \"branches\": [\n                                {\n                                    \"name\": \"Activation\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Acid Ingredient\"\n                                        },\n                                        {\n                                            \"name\": \"Liquid Ingredient\"\n                                        },\n                                        {\n                                            \"name\": \"Heat\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"name\": \"Leavening Process\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Carbon Dioxide Release\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"name\": \"Usage\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Recipes with Acidic Ingredients\"\n                                        },\n                                        {\n                                            \"name\": \"Cookies and Biscuits\"\n                                        }\n                                    ]\n                                }\n                            ]\n                        },\n                        {\n                            \"name\": \"Steam\",\n                            \"branches\": [\n                                {\n                                    \"name\": \"Effects on Rise\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"External Expansion\"\n                                        },\n                                        {\n                                            \"name\": \"Internal Moisture\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"name\": \"Techniques\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Covering with Lid\"\n                                        },\n                                        {\n                                            \"name\": \"Spraying Water\"\n                                        }\n                                    ]\n                                },\n                                {\n                                    \"name\": \"Preferred Usage\",\n                                    \"branches\": [\n                                        {\n                                            \"name\": \"Breads\"\n                                        },\n                                        {\n                                            \"name\": \"Puff Pastry\"\n                                        }\n                                    ]\n                                }\n                            ]\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "import",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response is a valid JSON object\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"pm.test(\"Response has properties patchs, createdAt, fail, total, success, reportFilename, and id\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.be.an('object').that.has.all.keys('patchs', 'createdAt', 'fail', 'total', 'success', 'reportFilename', 'id');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/ahmad/Downloads/input_context_v2.csv"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/mind-maps/import",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mind-maps",
+								"import"
+							],
+							"query": [
+								{
+									"key": "file",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/Users/ahmad/Downloads/input_context_v2.csv"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/mind-maps/import",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"mind-maps",
+										"import"
+									],
+									"query": [
+										{
+											"key": "file",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ba-2io7PTI5mucaZCYFiRrZMEQ6dbE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Jan 2024 21:29:44 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"patchs\": 1,\n    \"createdAt\": \"2024-01-29T21:29:44.410Z\",\n    \"fail\": 0,\n    \"total\": 5,\n    \"success\": 5,\n    \"reportFilename\": \"ea88bf3a-4270-4b41-9f5c-048eb09125f7.csv\",\n    \"id\": \"f9962c3f-abde-4b9d-9a8b-a02a087efce1\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response has createdAt, subject, topic, id, and map properties\", function () {",
+									"    var jsonData = pm.response.json();",
+									"     pm.expect(jsonData).to.be.an('object').that.has.all.keys('createdAt', 'subject', 'topic', 'map', 'id');",
+									"});",
+									"",
+									"pm.test(\"Map property has name and branches properties\", function () {",
+									"    var map = pm.response.json().map;",
+									"    pm.expect(map).to.have.property(\"name\");",
+									"    pm.expect(map).to.have.property(\"branches\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/mind-maps/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mind-maps",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "557aa40e-0f1c-4edd-b1ee-e9e1bf177b8f"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/mind-maps/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"mind-maps",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "557aa40e-0f1c-4edd-b1ee-e9e1bf177b8f"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "559"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"22f-ZuqEU+CM/YnVsaUiBWOUcZKUARA\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 29 Jan 2024 21:07:45 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"createdAt\": \"2024-01-29T04:14:53.775Z\",\n    \"subject\": \"cook\",\n    \"topic\": \"rise\",\n    \"id\": \"557aa40e-0f1c-4edd-b1ee-e9e1bf177b8f\",\n    \"map\": {\n        \"name\": \"Cook\",\n        \"branches\": [\n            {\n                \"name\": \"Rise\",\n                \"branches\": [\n                    {\n                        \"name\": \"Leavening Agents\",\n                        \"branches\": [\n                            {\n                                \"name\": \"Yeast\"\n                            },\n                            {\n                                \"name\": \"Baking Powder\"\n                            },\n                            {\n                                \"name\": \"Baking Soda\"\n                            }\n                        ]\n                    },\n                    {\n                        \"name\": \"Fermentation\",\n                        \"branches\": [\n                            {\n                                \"name\": \"Yeast Fermentation\"\n                            },\n                            {\n                                \"name\": \"Lactic Acid Fermentation\"\n                            },\n                            {\n                                \"name\": \"Alcohol Fermentation\"\n                            }\n                        ]\n                    },\n                    {\n                        \"name\": \"Gluten Development\"\n                    },\n                    {\n                        \"name\": \"Air Incorporation\"\n                    },\n                    {\n                        \"name\": \"Steam Production\"\n                    },\n                    {\n                        \"name\": \"Proofing\"\n                    },\n                    {\n                        \"name\": \"Temperature Control\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an array with data property\", function () {",
+									"    pm.expect(pm.response.json()).that.has.property('data').to.be.an('array');",
+									"});",
+									"",
+									"pm.test(\"Response contains count property\", function () {",
+									"    pm.expect(pm.response.json()).to.have.property('count');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/mind-maps?filter[subject]=Deutsch&filter[ids][1]=d82a5685-e7ff-456b-8108-d071bed9f4ce",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"mind-maps"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "3",
+									"disabled": true
+								},
+								{
+									"key": "filter[subject]",
+									"value": "Deutsch"
+								},
+								{
+									"key": "filter[topic]",
+									"value": "Epische",
+									"disabled": true
+								},
+								{
+									"key": "filter[ids][1]",
+									"value": "d82a5685-e7ff-456b-8108-d071bed9f4ce"
+								},
+								{
+									"key": "filter[ids][0]",
+									"value": "4f295fbd-a1d2-4d51-bc8f-a2b62b913e3e",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/mind-maps?filter[subject]=Deutsch&filter[ids][1]=d82a5685-e7ff-456b-8108-d071bed9f4ce",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"mind-maps"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "3",
+											"disabled": true
+										},
+										{
+											"key": "filter[subject]",
+											"value": "Deutsch"
+										},
+										{
+											"key": "filter[topic]",
+											"value": "Epische",
+											"disabled": true
+										},
+										{
+											"key": "filter[ids][1]",
+											"value": "d82a5685-e7ff-456b-8108-d071bed9f4ce"
+										},
+										{
+											"key": "filter[ids][0]",
+											"value": "4f295fbd-a1d2-4d51-bc8f-a2b62b913e3e",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1460"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"5b4-nSYAdKDQU63OVVc9VqUcCDKac4s\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jan 2024 08:31:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"createdAt\": \"2024-01-29T09:22:57.158Z\",\n            \"subject\": \"Deutsch\",\n            \"topic\": \"Epik, Epische Texte analysieren & interpretieren\",\n            \"id\": \"d82a5685-e7ff-456b-8108-d071bed9f4ce\",\n            \"map\": {\n                \"name\": \"Epik, Epische Texte analysieren & interpretieren\",\n                \"branches\": [\n                    {\n                        \"name\": \"Einleitung\",\n                        \"branches\": [\n                            {\n                                \"name\": \"Definition Epik\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Merkmale epischer Texte\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Ziel der Analyse & Interpretation\",\n                                \"branches\": []\n                            }\n                        ]\n                    },\n                    {\n                        \"name\": \"Aufbau epischer Texte\",\n                        \"branches\": [\n                            {\n                                \"name\": \"Exposition\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Steigende Handlung\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Höhepunkt\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Fallende Handlung\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Schluss\",\n                                \"branches\": []\n                            }\n                        ]\n                    },\n                    {\n                        \"name\": \"Personenkonstellation\",\n                        \"branches\": [\n                            {\n                                \"name\": \"Protagonist\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Antagonist\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Nebenfiguren\",\n                                \"branches\": []\n                            }\n                        ]\n                    },\n                    {\n                        \"name\": \"Orts- und Zeitangaben\",\n                        \"branches\": []\n                    },\n                    {\n                        \"name\": \"Sprachliche Stilmittel\",\n                        \"branches\": [\n                            {\n                                \"name\": \"Metapher\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Symbol\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Ironie\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Anapher\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Alliteration\",\n                                \"branches\": []\n                            }\n                        ]\n                    },\n                    {\n                        \"name\": \"Interpretationsansätze\",\n                        \"branches\": [\n                            {\n                                \"name\": \"Handlung und Motive\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Gesellschaftskritik\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Psychologische Deutung\",\n                                \"branches\": []\n                            }\n                        ]\n                    },\n                    {\n                        \"name\": \"Textanalyse\",\n                        \"branches\": [\n                            {\n                                \"name\": \"Inhaltsangabe\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Charakterisierung\",\n                                \"branches\": []\n                            },\n                            {\n                                \"name\": \"Textstelleninterpretation\",\n                                \"branches\": []\n                            }\n                        ]\n                    }\n                ]\n            }\n        }\n    ],\n    \"count\": 1\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "files",
+			"item": [
+				{
+					"name": "get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/files/:filename",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"files",
+								":filename"
+							],
+							"variable": [
+								{
+									"key": "filename",
+									"value": "49b2ebb0-637e-4600-b74a-1fead20f58ef.csv"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "patchs",
+			"item": [
+				{
+					"name": "search",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an array of objects with specific properties\", function () {",
+									"    var responseData = pm.response.json();",
+									"    pm.expect(responseData.data).to.be.an('array')",
+									"    responseData.data.forEach(function(item) {",
+									"        pm.expect(item).to.be.an('object').that.has.all.keys('patchs', 'createdAt', 'fail', 'total', 'success', 'reportFilename', 'id');",
+									"    });",
+									"});",
+									"",
+									"pm.test(\"Response count property is a number\", function () {",
+									"    var responseData = pm.response.json();",
+									"    pm.expect(responseData).to.have.property('count').that.is.a('number');",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/patchs",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"patchs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/patchs",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"patchs"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "394"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18a-3rHS/7TRB5fff8UmJLqf94Y0zBE\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jan 2024 08:32:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"patchs\": 1,\n            \"createdAt\": \"2024-01-29T21:29:44.410Z\",\n            \"fail\": 0,\n            \"total\": 5,\n            \"success\": 5,\n            \"reportFilename\": \"ea88bf3a-4270-4b41-9f5c-048eb09125f7.csv\",\n            \"id\": \"f9962c3f-abde-4b9d-9a8b-a02a087efce1\"\n        },\n        {\n            \"patchs\": 1,\n            \"createdAt\": \"2024-01-29T11:19:43.706Z\",\n            \"fail\": 0,\n            \"total\": 5,\n            \"success\": 5,\n            \"reportFilename\": \"b6282346-ece5-4d9d-877e-ec481e36d2bc.csv\",\n            \"id\": \"041d40aa-a499-4c7b-965b-ee2ef54b85fa\"\n        }\n    ],\n    \"count\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "get by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Response is an objects with specific properties\", function () {",
+									"    pm.expect(pm.response.json()).to.be.an('object').that.has.all.keys('patchs', 'createdAt', 'fail', 'total', 'success', 'reportFilename', 'id')",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/patchs/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"patchs",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "041d40aa-a499-4c7b-965b-ee2ef54b85fa"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/patchs/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"patchs",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "041d40aa-a499-4c7b-965b-ee2ef54b85fa"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ba-vWMDaz48M94xPRqZwRF399RuS5s\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 30 Jan 2024 08:32:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"patchs\": 1,\n    \"createdAt\": \"2024-01-29T11:19:43.706Z\",\n    \"fail\": 0,\n    \"total\": 5,\n    \"success\": 5,\n    \"reportFilename\": \"b6282346-ece5-4d9d-877e-ec481e36d2bc.csv\",\n    \"id\": \"041d40aa-a499-4c7b-965b-ee2ef54b85fa\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
