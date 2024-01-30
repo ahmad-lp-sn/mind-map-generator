@@ -14,11 +14,11 @@ const mindMapFilterSchema = Joi.object<MindMapFilter>({
   subject: Joi.string(),
   topic: Joi.string(),
   ids: Joi.array().items(Joi.string()),
-}).xor("subject", "topic");
+})
+  .xor("subject", "topic")
 
-const searchReqSchema = Joi.object<PaginatedQuery<MindMapFilter>>({
-  ...paginated,
-  filter: mindMapFilterSchema,
+const searchReqSchema = Joi.object({
+  query: { ...paginated, filter: mindMapFilterSchema },
 });
 
 export const mindMapsValidators = {

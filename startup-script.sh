@@ -12,4 +12,4 @@ GCP_SA_KEY=$(gcloud secrets versions access latest --secret=GCP_SA_KEY)
 export OPENAI_API_KEY OPENAI_MODEL_ID STORAGE_TYPE GCP_STORAGE_BUCKET GCP_PROJECT_ID GCP_SA_KEY
 
 npm run build
-npm start
+node dist/app/index.js

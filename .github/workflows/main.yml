@@ -27,7 +27,7 @@ jobs:
       - name: Deploy to GCE
         if: success()
         run: |
-          gcloud compute ssh instance-1 --command="cd /path/on/instance && git pull && chmod +x ./startup-script.sh && ./startup-script.sh"
+          gcloud compute ssh instance-1 --command="cd ~/dev/mind-map-generator && git pull && chmod +x ./startup-script.sh && ./startup-script.sh"
         env:
           GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
